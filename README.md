@@ -75,7 +75,7 @@ Thresholds and the model choice are tuned on dev photos only; the test split is 
 | Latency p50 / p95 | Not run yet: no `eval/results/bench-<date>.json` (M3) | `eval/results/` |
 | Usability test | Not run yet: no sessions in `docs/usability.md` (M5) | `docs/usability.md` |
 | Layout experiment click-through (A vs B) | Not run yet (M5). Needs 388 searches with results per layout to detect a 10-point change in click-through | `docs/ab-test.md` |
-| UAT cases executed / passed | Not run yet: 0 of 70 executed | `docs/uat/test-cases.csv` |
+| UAT cases executed / passed | Not run yet: 0 of 71 executed | `docs/uat/test-cases.csv` |
 <!-- results:end -->
 
 ## Stack

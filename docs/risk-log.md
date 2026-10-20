@@ -17,13 +17,14 @@ Reviewed at every milestone review. **Likelihood** and **Impact** are 1 (low) to
 | R-09 | The layout experiment gets too few searches to mean anything | 3 | 2 | 6 | Sample size computed in advance; result labelled directional when short (D-13); usability round as the fallback evidence | TC-ANLY-04, TC-ANLY-05 | Open |
 | R-11 | Ad blockers drop PostHog events, so click-through is computed on a biased subset | 2 | 2 | 4 | Compare API search counts with `search_submitted` counts and report the gap beside the experiment | TC-ANLY-02 | Open |
 | R-14 | The 60 × 80 px source images are too small to embed well | 3 | 3 | 9 | Images from the 384 × 512 copy, joined on id (D-02); minimum size checked at build | TC-CAT-03 | Open |
+| R-17 | Web photos are cleaner than shoppers' phone photos, so the eval flatters the search | 3 | 2 | 6 | Prefer real-world settings over studio shots; record each photo's setting and report results by setting; add owner phone photos as a second source when they exist (D-26) | TC-EVAL-04, TC-EVAL-16 | Open |
 | R-15 | Low-light and blurred photos quietly return worse results | 3 | 1 | 3 | Quality banner with retake (D-14); thresholds set on dev | TC-FAIL-04, TC-FAIL-05, TC-FAIL-07 | Open |
 
 ## Delivery risks
 
 | ID | Risk | L | I | Score | Mitigation | Trigger date | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| R-10 | Fewer than five shoppers, or fewer than 60 query photos, can be found | 2 | 3 | 6 | Ask in week 1; book seven shoppers for five; collect photos from friends' wardrobes with consent and no faces | End of M1 | Open |
+| R-10 | Fewer than five shoppers, or fewer than 60 query photos, can be found (photos: mitigated by D-26) | 2 | 3 | 6 | Ask in week 1; book seven shoppers for five; collect photos from friends' wardrobes with consent and no faces | End of M1 | Open |
 | R-12 | Scope creep: text search, auto-detection, prices, accounts | 2 | 2 | 4 | Out-of-scope list in PRD §8 and CLAUDE.md; every new ask logged in decisions.md | Each milestone planning | Open |
 | R-13 | Numbers on the resume can't be traced to a file | 2 | 3 | 6 | README Results generated from eval and session files only (CLAUDE.md rule 4); brackets on the resume until then | v1 release | Open |
 | R-16 | Embedding 10,000 images (two models) is too slow on this laptop | 1 | 1 | 1 | CPU build reused when current (D-25); GPU or a free notebook as a fallback | M1 | Closed 2026-10-20: 46 min, once (D-25) |
