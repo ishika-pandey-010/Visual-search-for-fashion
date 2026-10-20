@@ -18,7 +18,7 @@ Automated: how many of the row's UAT cases have at least one automated test citi
 | FR-08 | Should | The shopper can crop the photo to one item and search again. | US-15 | TC-SRCH-08, TC-SRCH-09, TC-SRCH-16 | 0 of 3 | R-03 |
 | FR-09 | Must | The app sends the analytics events in [data-contracts.md](data-cont… | US-16 | TC-ANLY-01, TC-ANLY-02, TC-ANLY-03 | 0 of 3 | R-11 |
 | FR-10 | Must | A PostHog feature flag assigns each visitor to results layout A or… | US-17 | TC-ANLY-04, TC-ANLY-05, TC-ANLY-06 | 0 of 3 | R-09 |
-| FR-11 | Must | `make catalogue` and `make index` build the catalogue and one FAISS… | US-01, US-02 | TC-CAT-01, TC-CAT-02, TC-CAT-03, TC-CAT-04, TC-CAT-05, TC-CAT-06, TC-CAT-07, TC-CAT-08 | 0 of 8 | R-14 |
+| FR-11 | Must | `make catalogue` and `make index` build the catalogue and one FAISS… | US-01, US-02 | TC-CAT-01, TC-CAT-02, TC-CAT-03, TC-CAT-04, TC-CAT-05, TC-CAT-06, TC-CAT-07, TC-CAT-08 | 4 of 8 | R-14 |
 | FR-12 | Must | `make eval` computes Recall@10, Precision@10 and MRR with confidenc… | US-03, US-04 | TC-EVAL-01, TC-EVAL-02, TC-EVAL-03, TC-EVAL-04, TC-EVAL-05, TC-EVAL-06, TC-EVAL-07, TC-EVAL-08, TC-EVAL-15 | 0 of 9 | R-01, R-02, R-03, R-05 |
 | FR-13 | Must | `make bench` sends 200 photos to the running API and writes p50 and… | US-05 | TC-EVAL-09, TC-EVAL-10, TC-EVAL-11, TC-NFR-08 | 0 of 4 | R-06 |
 | FR-14 | Must | Every error (wrong file type, file too large, server down, timeout)… | US-13 | TC-SRCH-10, TC-SRCH-11, TC-SRCH-12, TC-SRCH-13 | 0 of 4 | — |
@@ -28,7 +28,7 @@ Automated: how many of the row's UAT cases have at least one automated test citi
 | FR-18 | Should | On first visit the page shows three example photos the shopper can… | US-11 | TC-SRCH-05, TC-SRCH-06, TC-SRCH-07, TC-SRCH-14, TC-SRCH-15 | 0 of 5 | R-07 |
 | NFR-01 | Must | p95 time inside `/search` ≤ 500 ms, and end to end ≤ 1,500 ms, for… | US-05 | TC-EVAL-09, TC-EVAL-10, TC-EVAL-11, TC-NFR-08 | 0 of 4 | R-06 |
 | NFR-02 | Must | Every reported metric comes from a results file written by `make ev… | US-04 | TC-EVAL-04, TC-EVAL-05, TC-EVAL-06, TC-EVAL-07, TC-EVAL-08 | 0 of 5 | R-01, R-03, R-05 |
-| NFR-03 | Must | Catalogue sampling, the query split and the random baseline use fix… | US-01, US-04 | TC-CAT-01, TC-CAT-02, TC-CAT-03, TC-CAT-04, TC-EVAL-04, TC-EVAL-05, TC-EVAL-06, TC-EVAL-07, TC-EVAL-08 | 0 of 9 | R-01, R-03, R-05, R-14 |
+| NFR-03 | Must | Catalogue sampling, the query split and the random baseline use fix… | US-01, US-04 | TC-CAT-01, TC-CAT-02, TC-CAT-03, TC-CAT-04, TC-EVAL-04, TC-EVAL-05, TC-EVAL-06, TC-EVAL-07, TC-EVAL-08 | 4 of 9 | R-01, R-03, R-05, R-14 |
 | NFR-04 | Should | The search flow works with a keyboard only; result images have the… | US-12 | TC-NFR-07, TC-RES-01, TC-RES-02, TC-RES-03, TC-RES-04 | 0 of 5 | — |
 | NFR-05 | Should | Works at phone widths from 360 px, with camera capture in current C… | US-12 | TC-NFR-05, TC-NFR-06, TC-RES-01, TC-RES-02, TC-RES-03, TC-RES-04 | 0 of 6 | — |
 | NFR-06 | Must | Runs on free tools only: open models and data, CPU inference, PostH… | — | TC-NFR-04 | 0 of 1 | R-08 |
@@ -40,7 +40,7 @@ Found from `US-nn` tags in comments under `vsearch/`, `eval/` and `web/src/`.
 
 | Story | Title | Milestone | Built in |
 | --- | --- | --- | --- |
-| US-01 | Build the catalogue | M1 | — |
+| US-01 | Build the catalogue | M1 | `vsearch/catalogue.py:17` |
 | US-02 | Build one index per model | M1 | — |
 | US-03 | Labelled phone photos | M2 | — |
 | US-04 | Retrieval eval harness | M2 | — |
@@ -65,8 +65,17 @@ Found from TC IDs in test names under `tests/` (pytest), `web/src/` (Vitest) and
 
 | UAT case | Story | Test | Where |
 | --- | --- | --- | --- |
+| TC-CAT-01 | US-01 | test_tc_cat_01_given_the_sources_when_built_then_columns_types_and_cap_hold | `tests/test_catalogue.py:23` |
+| TC-CAT-01 | US-01 | test_tc_cat_01_given_a_built_catalogue_then_each_image_is_the_source_bytes | `tests/test_catalogue.py:34` |
+| TC-CAT-01 | US-01 | test_tc_cat_01_real_catalogue_has_the_ten_types_capped_at_500 | `tests/test_catalogue_data.py:31` |
+| TC-CAT-02 | US-01 | test_tc_cat_02_given_the_same_seed_when_built_twice_then_ids_and_order_match | `tests/test_catalogue.py:46` |
+| TC-CAT-02 | US-01 | test_tc_cat_02_real_catalogue_matches_the_committed_manifest | `tests/test_catalogue_data.py:42` |
+| TC-CAT-03 | US-01 | test_tc_cat_03_given_unusable_products_when_built_then_dropped_and_counted | `tests/test_catalogue.py:64` |
+| TC-CAT-03 | US-01 | test_tc_cat_03_real_report_counts_every_drop | `tests/test_catalogue_data.py:50` |
+| TC-CAT-04 | US-01 | test_tc_cat_04_given_reserved_types_when_built_then_only_in_the_holdout | `tests/test_catalogue.py:78` |
+| TC-CAT-04 | US-01 | test_tc_cat_04_real_holdout_has_only_reserved_types | `tests/test_catalogue_data.py:58` |
 
-UAT cases with no automated test yet (70): TC-CAT-01, TC-CAT-02, TC-CAT-03, TC-CAT-04, TC-CAT-05, TC-CAT-06, TC-CAT-07, TC-CAT-08, TC-EVAL-01, TC-EVAL-02, TC-EVAL-03, TC-EVAL-04, TC-EVAL-05, TC-EVAL-06, TC-EVAL-07, TC-EVAL-08, TC-EVAL-09, TC-EVAL-10, TC-EVAL-11, TC-EVAL-12, TC-EVAL-13, TC-EVAL-14, TC-EVAL-15, TC-SRCH-01, TC-SRCH-02, TC-SRCH-03, TC-SRCH-04, TC-SRCH-05, TC-SRCH-06, TC-SRCH-07, TC-SRCH-08, TC-SRCH-09, TC-SRCH-10, TC-SRCH-11, TC-SRCH-12, TC-SRCH-13, TC-SRCH-14, TC-SRCH-15, TC-SRCH-16, TC-RES-01, TC-RES-02, TC-RES-03, TC-RES-04, TC-RES-05, TC-RES-06, TC-RES-07, TC-RES-08, TC-RES-09, TC-FAIL-01, TC-FAIL-02, TC-FAIL-03, TC-FAIL-04, TC-FAIL-05, TC-FAIL-06, TC-FAIL-07, TC-FAIL-08, TC-ANLY-01, TC-ANLY-02, TC-ANLY-03, TC-ANLY-04, TC-ANLY-05, TC-ANLY-06, TC-NFR-01, TC-NFR-02, TC-NFR-03, TC-NFR-04, TC-NFR-05, TC-NFR-06, TC-NFR-07, TC-NFR-08.
+UAT cases with no automated test yet (66): TC-CAT-05, TC-CAT-06, TC-CAT-07, TC-CAT-08, TC-EVAL-01, TC-EVAL-02, TC-EVAL-03, TC-EVAL-04, TC-EVAL-05, TC-EVAL-06, TC-EVAL-07, TC-EVAL-08, TC-EVAL-09, TC-EVAL-10, TC-EVAL-11, TC-EVAL-12, TC-EVAL-13, TC-EVAL-14, TC-EVAL-15, TC-SRCH-01, TC-SRCH-02, TC-SRCH-03, TC-SRCH-04, TC-SRCH-05, TC-SRCH-06, TC-SRCH-07, TC-SRCH-08, TC-SRCH-09, TC-SRCH-10, TC-SRCH-11, TC-SRCH-12, TC-SRCH-13, TC-SRCH-14, TC-SRCH-15, TC-SRCH-16, TC-RES-01, TC-RES-02, TC-RES-03, TC-RES-04, TC-RES-05, TC-RES-06, TC-RES-07, TC-RES-08, TC-RES-09, TC-FAIL-01, TC-FAIL-02, TC-FAIL-03, TC-FAIL-04, TC-FAIL-05, TC-FAIL-06, TC-FAIL-07, TC-FAIL-08, TC-ANLY-01, TC-ANLY-02, TC-ANLY-03, TC-ANLY-04, TC-ANLY-05, TC-ANLY-06, TC-NFR-01, TC-NFR-02, TC-NFR-03, TC-NFR-04, TC-NFR-05, TC-NFR-06, TC-NFR-07, TC-NFR-08.
 
 ## UAT sheet status
 
@@ -86,5 +95,5 @@ UAT cases with no automated test yet (70): TC-CAT-01, TC-CAT-02, TC-CAT-03, TC-C
 - Requirements: 25 (18 Must); Must requirements with at least one UAT case: 18 of 18
 - Stories: 18; with at least one UAT case: 18 of 18
 - Risks: 16; risks with a proving test: 12
-- UAT cases with an automated test: 0 of 70
+- UAT cases with an automated test: 4 of 70
 - Link errors: 0
