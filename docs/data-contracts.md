@@ -22,9 +22,11 @@ One row per product in the searchable catalogue.
 | `base_colour` | str | Source vocabulary as written (46 values, e.g. `Navy Blue` is not `Blue`) |
 | `gender` | str | `Men`, `Women`, `Unisex`, `Boys`, `Girls` |
 | `name` | str | `productDisplayName` |
-| `image_path` | str | `data/images/<product_id>.jpg`, 384 × 512, from the ceyda copy |
+| `image_path` | str | `images/<product_id>.jpg`, relative to the data directory; the source JPEG bytes from the ceyda copy (D-21), almost all 384 × 512 |
 
-Build rules: at most 500 products per type, sampled with seed 2026; a product with no image, no label or an image under 200 px on its short side is dropped and counted in `data/catalogue-report.json`. Products of the reserved out-of-catalogue types (D-03) go to `data/holdout.parquet` and never into the catalogue.
+Build rules: a product with no colour or name label, no image, an unreadable image or an image under 200 px on its short side is dropped and counted in `data/catalogue-report.json`; then at most 500 per type are sampled with seed 2026 (OQ-04). Products of the reserved out-of-catalogue types (D-03) go to `data/holdout.parquet`, sampled the same way, and never into the catalogue.
+
+`eval/catalogue-manifest.csv` (`product_id, article_type, base_colour`, in catalogue order) is committed. `make catalogue` compares every rebuild with it and says whether it matches, so a changed catalogue can't slip into an eval unnoticed.
 
 ## 3. Index (`data/index/<model>/`, built by `make index`)
 
