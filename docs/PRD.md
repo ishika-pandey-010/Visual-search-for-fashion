@@ -159,7 +159,7 @@ Priority uses MoSCoW. **Must** = v1 cannot ship without it.
 | --- | --- | --- | --- | --- |
 | Q1 | Can the Myntra-sourced product images be shown on a public hosted demo? Neither Hugging Face card states a licence. | PM | Before M5 | [TBD] (R-08) |
 | Q2 | Is "same type and same colour" the right relevance rule, or do shoppers weigh pattern more? | PM | End of M0 | [TBD] from discovery (A1) |
-| Q3 | What Recall@10 target on test counts as good enough? | PM | End of M2 | [TBD]: set from dev numbers before test is read |
+| Q3 | What Recall@10 target on test counts as good enough? | PM | End of M2 | **Proposed 2026-10-21, awaiting owner approval:** the shipped model's strict Recall@10 on the 44 test photos is at least 0.50, and its 95% interval sits wholly above random's. Reasoning: on 18 dev photos the two models scored 0.56 and 0.67 with lower bounds of 0.33 and 0.44, so 0.50 is reachable but not given; and "above random" is the minimum for the number to mean anything. The test split stays unread until this is approved (OQ-05 too). |
 | Q4 | Where will the experiment's visitors come from, and how many are realistic in two weeks? | PM | Before M5 | [TBD] (R-09) |
 | Q5 | Should the colour rule merge near-identical source colours (`Navy Blue` and `Blue`, `Off White` and `White`)? | PM | M2 | Not in v1: the strict rule stands, type-only is reported beside it (D-06) |
 
@@ -169,3 +169,4 @@ Priority uses MoSCoW. **Must** = v1 cannot ship without it.
 | --- | --- | --- |
 | 0.1 | 2026-10-20 | First draft from the build plan, the resume bullet and dataset checks |
 | 0.2 | 2026-10-21 | Query photos from Openverse instead of the owner's phone (D-26); NFR-07 reworded to cover licences |
+| 0.3 | 2026-10-21 | Q3 test target proposed from the dev run |

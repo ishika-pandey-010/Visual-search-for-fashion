@@ -1,0 +1,144 @@
+{
+  "run_date": "2026-10-21",
+  "commit": "bb6a27c-dirty",
+  "catalogue": {
+    "products": 4905,
+    "article_types": 10,
+    "seed": 2026
+  },
+  "queries": {
+    "dev": 18
+  },
+  "rule": "strict = same articleType and baseColour; type_only = same articleType (D-06)",
+  "unanswerable_strict": {
+    "dev": 0
+  },
+  "rows": [
+    {
+      "system": "random",
+      "split": "dev",
+      "rule": "strict",
+      "n": 18,
+      "recall_at_10": 0.0556,
+      "recall_at_10_ci": [
+        0.0,
+        0.1667
+      ],
+      "precision_at_10": 0.0056,
+      "precision_at_10_ci": [
+        0.0,
+        0.0167
+      ],
+      "mrr": 0.0185,
+      "mrr_ci": [
+        0.0,
+        0.0556
+      ]
+    },
+    {
+      "system": "random",
+      "split": "dev",
+      "rule": "type_only",
+      "n": 18,
+      "recall_at_10": 0.5,
+      "recall_at_10_ci": [
+        0.2778,
+        0.7222
+      ],
+      "precision_at_10": 0.0833,
+      "precision_at_10_ci": [
+        0.0389,
+        0.1278
+      ],
+      "mrr": 0.1839,
+      "mrr_ci": [
+        0.082,
+        0.3135
+      ]
+    },
+    {
+      "system": "openclip",
+      "split": "dev",
+      "rule": "strict",
+      "n": 18,
+      "recall_at_10": 0.5556,
+      "recall_at_10_ci": [
+        0.3333,
+        0.7778
+      ],
+      "precision_at_10": 0.1611,
+      "precision_at_10_ci": [
+        0.0776,
+        0.2611
+      ],
+      "mrr": 0.2881,
+      "mrr_ci": [
+        0.1353,
+        0.4679
+      ]
+    },
+    {
+      "system": "openclip",
+      "split": "dev",
+      "rule": "type_only",
+      "n": 18,
+      "recall_at_10": 0.9444,
+      "recall_at_10_ci": [
+        0.8333,
+        1.0
+      ],
+      "precision_at_10": 0.7833,
+      "precision_at_10_ci": [
+        0.6499,
+        0.8889
+      ],
+      "mrr": 0.8889,
+      "mrr_ci": [
+        0.75,
+        1.0
+      ]
+    },
+    {
+      "system": "fashionclip",
+      "split": "dev",
+      "rule": "strict",
+      "n": 18,
+      "recall_at_10": 0.6667,
+      "recall_at_10_ci": [
+        0.4444,
+        0.8889
+      ],
+      "precision_at_10": 0.2278,
+      "precision_at_10_ci": [
+        0.1333,
+        0.3389
+      ],
+      "mrr": 0.3861,
+      "mrr_ci": [
+        0.2101,
+        0.5807
+      ]
+    },
+    {
+      "system": "fashionclip",
+      "split": "dev",
+      "rule": "type_only",
+      "n": 18,
+      "recall_at_10": 1.0,
+      "recall_at_10_ci": [
+        1.0,
+        1.0
+      ],
+      "precision_at_10": 0.8444,
+      "precision_at_10_ci": [
+        0.7278,
+        0.9389
+      ],
+      "mrr": 0.9028,
+      "mrr_ci": [
+        0.7917,
+        1.0
+      ]
+    }
+  ]
+}

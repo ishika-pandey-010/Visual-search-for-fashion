@@ -108,11 +108,17 @@ It never writes the uploaded image to disk, never logs image bytes or file names
     {"system": "random | openclip | fashionclip", "split": "dev | test", "rule": "strict | type_only",
      "n": 0, "recall_at_10": 0.0, "recall_at_10_ci": [0.0, 0.0], "precision_at_10": 0.0, "mrr": 0.0}
   ],
+  "rule": "strict = same articleType and baseColour; type_only = same articleType (D-06)",
+  "unanswerable_strict": {"dev": 0, "test": 0},
   "no_match": {"system": "fashionclip", "split": "test", "floor": 0.0,
                "in_catalogue_answered": 0.0, "n_in": 0, "out_of_catalogue_rejected": 0.0, "n_out": 0},
   "model_choice": {"chosen": "openclip | fashionclip", "rule": "D-08", "reason": "plain sentence with the numbers"}
 }
 ```
+
+`no_match` (US-08) and `model_choice` (US-06) are added in M3; until then they're absent. A dev-only run (`make eval`) has only dev rows and no `test` key in `queries`. `unanswerable_strict` counts in-catalogue queries whose type and colour the catalogue doesn't stock at all (D-30).
+
+`eval/results/<YYYY-MM-DD>-queries.csv` has one row per in-catalogue query and system: `query_id, system, split, article_type, base_colour, strict_matches_in_catalogue, setting, first_relevant_rank_strict, first_relevant_rank_type_only, top_score, top_10` (space-separated product IDs). `eval/results/test-reads.log` gets one dated line for every run that reads the test split.
 
 ### Latency (`eval/results/bench-<YYYY-MM-DD>.json`, written by `make bench`)
 

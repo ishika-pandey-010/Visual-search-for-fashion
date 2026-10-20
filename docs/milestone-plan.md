@@ -119,8 +119,13 @@ Filled in at the end of each milestone.
 - What went wrong: a unit test overwrote the committed manifest once (caught by the rebuild's own check, guarded since); the CPU index build took 46 minutes, not minutes (D-25).
 - Retro — keep: checking the real data before writing a check about it (duplicate images before the self-check). Change: write the "fails first" stub before the test file, so a vacuous assertion shows up as a pass straight away.
 
-### M2 review
-- Planned: 7 pts · Done: [TBD]
+### M2 review (2026-10-21)
+- Planned: 7 pts · Done: 8 pts (US-03 grew from 2 to 3 points when its photos had to come from the web, D-26).
+- Demo: 84 credited query photos that pass `make eval-check`; `make eval` on dev in 14 s: random 0.06, OpenCLIP 0.56, FashionCLIP 0.67 strict Recall@10 on 18 photos, with wide intervals.
+- Gate not fully met: the test target (PRD Q3) is proposed, not approved. The test split stays unread until it is, and until the owner spot-checks the labels (OQ-05).
+- Changed from the plan: Freepik was requested and rejected on its terms; Openverse used instead (D-26). Labels by Claude Code (D-28). Split method changed once before first use (D-29).
+- Risks: R-17 added (web photos flatter the search) and open; R-10's photo half mitigated; R-01 looks under control on dev (random 0.06 against 0.56 and 0.67).
+- Retro — keep: checking the real data's shape before trusting a metric (the unanswerable-query count came from that). Change: aim search terms better before collecting. 89% of the candidates were unusable, and reviewing them was most of the work.
 
 ### M3 review
 - Planned: 17 pts · Done: [TBD]

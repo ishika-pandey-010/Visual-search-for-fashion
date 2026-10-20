@@ -33,6 +33,8 @@ A result is **relevant** to a query when its `article_type` and `base_colour` bo
 
 A second rule, **type-only**, counts a result as relevant when only `article_type` matches. It's always reported beside the strict rule, never in place of it. The gap between the two shows how much of the error is colour.
 
+Some photos show a type and colour the catalogue doesn't stock (one of 62: a lavender shirt). They stay in the metrics as misses, because shoppers photograph what they see, and the results file counts them so the ceiling is visible (D-30).
+
 Known harshness: the source uses 46 colour names, and some are near-identical (`Navy Blue` and `Blue`, `Off White` and `White`). The strict rule counts those as misses. That makes the headline number conservative, which is the right direction to be wrong in (PRD Q5).
 
 ## 4. Metrics
