@@ -2,6 +2,7 @@
 labels table and images table in the same shapes `vsearch.catalogue.load_sources()` returns."""
 import io
 
+import numpy as np
 import pandas as pd
 import pytest
 from PIL import Image
@@ -62,3 +63,36 @@ def sources():
     images.append({"product_id": 888888, "image_bytes": jpeg(8)})
 
     return pd.DataFrame(labels), pd.DataFrame(images), bad
+
+
+class FakeEmbedder:
+    """Stands in for a CLIP model in unit tests (D-20): mean colour and its complement, normalised.
+    Same interface as vsearch.embed.ClipEmbedder."""
+
+    def __init__(self, key):
+        self.key = key
+        self.dim = 6
+        self.calls = 0
+
+    def describe(self):
+        return {"model": self.key, "label": f"fake {self.key}", "repo": "fake/repo", "revision": "0" * 40, "dim": self.dim}
+
+    def embed(self, images):
+        self.calls += 1
+        rows = []
+        for img in images:
+            mean = np.asarray(img.convert("RGB"), dtype=np.float32).reshape(-1, 3).mean(axis=0) / 255
+            rows.append(np.concatenate([mean, 1 - mean]))
+        vectors = np.asarray(rows, dtype=np.float32)
+        return vectors / np.linalg.norm(vectors, axis=1, keepdims=True)
+
+
+@pytest.fixture
+def built_catalogue(sources, tmp_path):
+    """A data directory holding a catalogue built from the fixture sources."""
+    from vsearch.catalogue import build
+
+    labels, images, _ = sources
+    data = tmp_path / "data"
+    build(labels, images, data, per_type=4)
+    return data

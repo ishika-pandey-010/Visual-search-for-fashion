@@ -2,7 +2,7 @@
 
 Take a photo of a piece of clothing and get the ten most similar products from a catalogue of about 5,000, or a plain "no close match" when nothing is close. Built with OpenCLIP and Marqo-FashionCLIP embeddings, a FAISS index, a FastAPI service and a React front end, over products from the open Fashion Product Images dataset.
 
-> **Status: M0, docs only.** The spec, PRD, stories, eval plan, experiment plan and UAT sheet are written. No code yet, no photos labelled, no shoppers interviewed. The Results table below says so because it's generated from the files that will hold the numbers.
+> **Status: M1 done (tag `m1`).** The catalogue and one search index per model are built and tested ([catalogue log](docs/session-logs/2026-10-20-catalogue.md), [index log](docs/session-logs/2026-10-20-index.md)). There is no eval, API or app yet; no photos are labelled and no shoppers interviewed. The Results table below says so because it's generated from the files that will hold the numbers.
 
 ## For reviewers: where the proof is
 
@@ -18,6 +18,9 @@ Take a photo of a piece of clothing and get the ten most similar products from a
 | Decisions and their trade-offs | [docs/decisions.md](docs/decisions.md) |
 | Risks, mitigations and the test that proves each one | [docs/risk-log.md](docs/risk-log.md) |
 | Milestones and review notes | [docs/milestone-plan.md](docs/milestone-plan.md) |
+| Every feature, its acceptance criteria and its status | [docs/feature-map.md](docs/feature-map.md) |
+| How each feature was built, tested and reviewed, with what went wrong | [docs/session-logs/](docs/session-logs/) |
+| Gaps and assumptions found while building | [docs/open-questions.md](docs/open-questions.md) |
 | The UAT sheet | [docs/uat/test-cases.csv](docs/uat/test-cases.csv) · [UAT plan](docs/uat-plan.md) |
 | Discovery guide and usability protocol | [docs/discovery-notes.md](docs/discovery-notes.md) · [docs/usability-protocol.md](docs/usability-protocol.md) |
 | Similar products and what was taken from them | [docs/competitive-analysis.md](docs/competitive-analysis.md) |
@@ -64,7 +67,7 @@ Thresholds and the model choice are tuned on dev photos only; the test split is 
 
 | Metric | Value | Produced by |
 | --- | --- | --- |
-| Catalogue searched | Not built yet (M1) | `eval/results/` |
+| Catalogue searched | 4,905 products across 10 article types | `eval/catalogue-manifest.csv` |
 | Top-10 match rate (Recall@10), test photos | Not run yet: no `eval/results/<date>.json` (needs labelled phone photos, M2) | `eval/results/` |
 | Precision@10 and MRR, test photos | Not run yet (M2) | `eval/results/` |
 | No close match (similarity floor) | Not run yet (M2–M3) | `eval/results/` |
@@ -83,8 +86,13 @@ Data: product labels from [`ashraq/fashion-product-images-small`](https://huggin
 
 ## Run locally
 
-From M1. For now:
+Needs [uv](https://docs.astral.sh/uv/) and about 3 GB free (datasets, model weights, images).
 
 ```bash
-make docs    # rebuild docs/traceability.md and the Results table above
+make setup       # Python 3.12 and CPU-only dependencies
+make catalogue   # downloads the pinned datasets; ~3 min first time; says whether it matches eval/catalogue-manifest.csv
+make index       # embeds the catalogue with both models; ~46 min on an i7-10750H, under 2 s when nothing changed
+make test        # unit tests on a generated fixture (what CI runs)
+make test-data   # the same checks on the real catalogue and indexes
+make docs        # rebuild docs/traceability.md and the Results table above
 ```

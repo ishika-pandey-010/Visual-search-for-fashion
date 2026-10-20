@@ -121,4 +121,4 @@ The schemas live in `docs/data-contracts.md` and are the source of truth. The on
 
 ## Current status
 
-M0 (docs) written 2026-10-20. Discovery interviews, query photos, usability sessions and the experiment haven't happened. M1 starts with a plan for approval.
+M1 done on `dev`, tagged `m1` (2026-10-20): US-01 catalogue (4,905 products) and US-02 indexes for both models, with session logs. Discovery, query photos, usability and the experiment haven't happened (OQ-01). M2 starts with a plan for approval; US-03 needs the owner's labelled photos.

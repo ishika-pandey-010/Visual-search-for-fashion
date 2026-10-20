@@ -111,8 +111,13 @@ Filled in at the end of each milestone.
 - Shoppers booked: [TBD]
 - Retro — keep: [TBD] · change: [TBD]
 
-### M1 review
-- Planned: 6 pts · Done: [TBD]
+### M1 review (2026-10-20)
+- Planned: 6 pts · Done: 6 pts (US-01, US-02). Both built on 2026-10-20, ahead of the planned 10-24 start.
+- Demo: `make catalogue` → 4,905 products across 10 types, matching the committed manifest; `make index` → one 4,905 × 512 index per model, each finding 200 of 200 catalogue images at rank 1. Unit tests 21 passing; real-data checks 10 passing.
+- Not done: the M0 people tasks. No interviews, photos or bookings yet, so OQ-01 stays open.
+- Risks: R-06 up from 4 to 6 (FashionCLIP embeds at 2.7× OpenCLIP's time per image in batch, see the index session log); R-16 closed.
+- What went wrong: a unit test overwrote the committed manifest once (caught by the rebuild's own check, guarded since); the CPU index build took 46 minutes, not minutes (D-25).
+- Retro — keep: checking the real data before writing a check about it (duplicate images before the self-check). Change: write the "fails first" stub before the test file, so a vacuous assertion shows up as a pass straight away.
 
 ### M2 review
 - Planned: 7 pts · Done: [TBD]

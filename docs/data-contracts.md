@@ -33,10 +33,18 @@ Build rules: a product with no colour or name label, no image, an unreadable ima
 | File | Content |
 | --- | --- |
 | `vectors.faiss` | `IndexFlatIP` over L2-normalised image embeddings (D-05) |
-| `ids.npy` | `product_id` per index row, same order |
-| `meta.json` | model name and pretrained tag, embedding dimension, catalogue file hash, build date |
+| `ids.npy` | `product_id` per index row, in catalogue order |
+| `meta.json` | `model`, `label`, `repo`, `revision`, `dim`, `torch_threads`, `count`, `catalogue_hash`, `built`, `embed_seconds` |
+| `self-check.json` | `n`, `rank1`, `misses` from the US-02 AC3 check: 200 catalogue images, embedded afresh, searched against their own index |
 
-Model keys: `openclip` = `ViT-B-32` / `laion2b_s34b_b79k`; `fashionclip` = `hf-hub:Marqo/marqo-fashionCLIP`. An index whose catalogue hash doesn't match the current catalogue is rebuilt, never reused.
+Models, both pinned to a Hugging Face commit (D-19) and loaded through open_clip's `local-dir:` loader from that snapshot (D-23):
+
+| Key | Repo | Revision |
+| --- | --- | --- |
+| `openclip` | `laion/CLIP-ViT-B-32-laion2B-s34B-b79K` (ViT-B-32, `laion2b_s34b_b79k`) | `1a25a446712ba5ee05982a381eed697ef9b435cf` |
+| `fashionclip` | `Marqo/marqo-fashionCLIP` (ViT-B-16 base) | `44f4c655124ed71e90cbf528d82f508d69d8a81b` |
+
+`catalogue_hash` is a SHA-256 over every product's id, type, colour and image-file hash, so it changes when an image changes even if the product list doesn't (D-24). Loading an index whose hash doesn't match the current catalogue fails with "Index is out of date: run make index". `make index` reuses an index that matches and rebuilds one that doesn't; `--force` rebuilds anyway.
 
 ## 4. API
 

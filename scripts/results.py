@@ -37,11 +37,22 @@ def latest(pattern):
     return json.loads(files[-1].read_text()), files[-1].relative_to(ROOT)
 
 
+def catalogue_row():
+    manifest = ROOT / "eval" / "catalogue-manifest.csv"
+    if not manifest.exists():
+        return ("Catalogue searched", "Not built yet (M1)", "`eval/catalogue-manifest.csv`")
+    with open(manifest, newline="") as f:
+        rows = list(csv.DictReader(f))
+    types = {r["article_type"] for r in rows}
+    return ("Catalogue searched", f"{len(rows):,} products across {len(types)} article types",
+            "`eval/catalogue-manifest.csv`")
+
+
 def eval_rows():
     data, src = latest("[0-9][0-9][0-9][0-9]-*.json")
     if not data:
         return [
-            ("Catalogue searched", "Not built yet (M1)", "`eval/results/`"),
+            catalogue_row(),
             ("Top-10 match rate (Recall@10), test photos",
              "Not run yet: no `eval/results/<date>.json` (needs labelled phone photos, M2)", "`eval/results/`"),
             ("Precision@10 and MRR, test photos", "Not run yet (M2)", "`eval/results/`"),
