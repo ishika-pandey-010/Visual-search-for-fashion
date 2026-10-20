@@ -1,0 +1,52 @@
+field,kind,value
+article_type,in_catalogue,Casual Shoes
+article_type,in_catalogue,Dresses
+article_type,in_catalogue,Handbags
+article_type,in_catalogue,Jeans
+article_type,in_catalogue,Kurtas
+article_type,in_catalogue,Shirts
+article_type,in_catalogue,Shorts
+article_type,in_catalogue,Tops
+article_type,in_catalogue,Trousers
+article_type,in_catalogue,Tshirts
+article_type,out_of_catalogue,Sarees
+article_type,out_of_catalogue,Watches
+article_type,out_of_catalogue,Sunglasses
+base_colour,,Beige
+base_colour,,Black
+base_colour,,Blue
+base_colour,,Bronze
+base_colour,,Brown
+base_colour,,Burgundy
+base_colour,,Charcoal
+base_colour,,Coffee Brown
+base_colour,,Copper
+base_colour,,Cream
+base_colour,,Gold
+base_colour,,Green
+base_colour,,Grey
+base_colour,,Grey Melange
+base_colour,,Khaki
+base_colour,,Lavender
+base_colour,,Lime Green
+base_colour,,Magenta
+base_colour,,Maroon
+base_colour,,Mauve
+base_colour,,Multi
+base_colour,,Mustard
+base_colour,,Navy Blue
+base_colour,,Off White
+base_colour,,Olive
+base_colour,,Orange
+base_colour,,Peach
+base_colour,,Pink
+base_colour,,Purple
+base_colour,,Red
+base_colour,,Rust
+base_colour,,Sea Green
+base_colour,,Silver
+base_colour,,Tan
+base_colour,,Teal
+base_colour,,Turquoise Blue
+base_colour,,White
+base_colour,,Yellow

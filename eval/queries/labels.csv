@@ -1,0 +1,85 @@
+query_id,kind,article_type,base_colour,split,source,notes
+q001,in_catalogue,Tshirts,Grey,dev,openverse,hanger
+q002,in_catalogue,Tshirts,Blue,dev,openverse,flat
+q003,in_catalogue,Tshirts,Navy Blue,test,openverse,flat
+q004,in_catalogue,Tshirts,Grey,test,openverse,flat
+q005,in_catalogue,Tshirts,Navy Blue,test,openverse,worn; held up; face cropped out
+q006,in_catalogue,Tshirts,Blue,test,openverse,worn; face cropped out
+q007,in_catalogue,Tshirts,Black,test,openverse,worn; face cropped out
+q008,in_catalogue,Tshirts,White,test,openverse,studio; face cropped out
+q009,in_catalogue,Shirts,Blue,dev,openverse,flat
+q010,in_catalogue,Shirts,Blue,dev,openverse,worn; face cropped out
+q011,in_catalogue,Shirts,Blue,test,openverse,worn; no face in frame
+q012,in_catalogue,Shirts,Navy Blue,test,openverse,worn; face cropped out
+q013,in_catalogue,Shirts,Pink,test,openverse,worn; face cropped out
+q014,in_catalogue,Shirts,White,test,openverse,worn; face cropped out
+q015,in_catalogue,Shirts,Lavender,test,openverse,worn; face cropped out
+q016,in_catalogue,Tops,White,test,openverse,worn; face cropped out
+q017,in_catalogue,Tops,White,dev,openverse,flat
+q018,in_catalogue,Tops,Black,test,openverse,worn; face cropped out
+q019,in_catalogue,Tops,Black,test,openverse,worn; mirror photo; face cropped out
+q020,in_catalogue,Tops,Multi,dev,openverse,worn; face cropped out
+q021,in_catalogue,Tops,White,test,openverse,studio; museum piece
+q022,in_catalogue,Kurtas,Grey,test,openverse,studio; advert; face cropped out
+q023,in_catalogue,Kurtas,Brown,test,openverse,display; dress form
+q024,in_catalogue,Kurtas,White,test,openverse,studio; museum piece
+q025,in_catalogue,Kurtas,Mustard,dev,openverse,display; dress form
+q026,in_catalogue,Dresses,Navy Blue,dev,openverse,worn; face cropped out
+q027,in_catalogue,Dresses,Beige,dev,openverse,worn; face cropped out
+q028,in_catalogue,Dresses,Pink,test,openverse,worn; no face in frame
+q029,in_catalogue,Dresses,Yellow,test,openverse,worn; face cropped out
+q030,in_catalogue,Dresses,White,test,openverse,worn; face cropped out
+q031,in_catalogue,Dresses,Orange,test,openverse,worn; seen from behind
+q032,in_catalogue,Jeans,Navy Blue,test,openverse,worn; legs only
+q033,in_catalogue,Trousers,Black,test,openverse,worn; face cropped out
+q034,in_catalogue,Trousers,Khaki,test,openverse,worn; face cropped out
+q035,in_catalogue,Trousers,Olive,test,openverse,worn; face cropped out
+q036,in_catalogue,Shorts,Blue,test,openverse,worn; no face in frame
+q037,in_catalogue,Shorts,Blue,test,openverse,worn; no face in frame
+q038,in_catalogue,Shorts,Blue,test,openverse,worn; face cropped out
+q039,in_catalogue,Shorts,Red,dev,openverse,worn; seen from behind
+q040,in_catalogue,Shorts,Black,dev,openverse,worn; face cropped out
+q041,in_catalogue,Shorts,Multi,test,openverse,worn; face cropped out
+q042,in_catalogue,Casual Shoes,Red,test,openverse,worn
+q043,in_catalogue,Casual Shoes,Pink,dev,openverse,studio
+q044,in_catalogue,Casual Shoes,Grey,test,openverse,worn
+q045,in_catalogue,Casual Shoes,Navy Blue,dev,openverse,display
+q046,in_catalogue,Casual Shoes,Black,test,openverse,worn
+q047,in_catalogue,Casual Shoes,White,test,openverse,studio; held in a hand
+q048,in_catalogue,Handbags,Beige,test,openverse,worn; face cropped out
+q049,out_of_catalogue,Sarees,Black,dev,openverse,worn; face cropped out
+q050,out_of_catalogue,Sarees,Green,dev,openverse,worn; face cropped out
+q051,out_of_catalogue,Sarees,Red,test,openverse,worn; face cropped out
+q052,out_of_catalogue,Sarees,Black,dev,openverse,worn; face cropped out
+q053,out_of_catalogue,Watches,Gold,test,openverse,studio
+q054,out_of_catalogue,Watches,Silver,test,openverse,display
+q055,out_of_catalogue,Watches,Black,test,openverse,studio
+q056,out_of_catalogue,Watches,White,test,openverse,display
+q057,out_of_catalogue,Sunglasses,,test,openverse,flat
+q058,out_of_catalogue,Sunglasses,Yellow,dev,openverse,studio
+q059,out_of_catalogue,Sunglasses,Brown,test,openverse,display
+q060,out_of_catalogue,Sunglasses,,test,openverse,display
+q061,not_fashion,,,dev,openverse,mug
+q062,not_fashion,,,dev,openverse,mug
+q063,not_fashion,,,test,openverse,mug
+q064,not_fashion,,,test,openverse,laptop
+q065,not_fashion,,,test,openverse,laptop
+q066,not_fashion,,,test,openverse,laptop
+q067,not_fashion,,,test,openverse,fruit bowl
+q068,not_fashion,,,test,openverse,fruit bowl
+q069,not_fashion,,,test,openverse,fruit bowl
+q070,not_fashion,,,dev,openverse,fruit bowl
+q071,in_catalogue,Jeans,Blue,dev,openverse,worn; face cropped out
+q072,in_catalogue,Jeans,Navy Blue,test,openverse,worn; legs only
+q073,in_catalogue,Jeans,Blue,test,openverse,display; folded on a bicycle
+q074,in_catalogue,Jeans,Blue,test,openverse,worn; face cropped out
+q075,in_catalogue,Jeans,Blue,test,openverse,worn; legs only
+q076,in_catalogue,Jeans,Navy Blue,dev,openverse,worn; face cropped out
+q077,in_catalogue,Kurtas,Green,test,openverse,worn; face cropped out
+q078,in_catalogue,Trousers,Grey,test,openverse,studio; no face in frame
+q079,in_catalogue,Trousers,Khaki,dev,openverse,worn; no face in frame
+q080,in_catalogue,Handbags,Tan,dev,openverse,display
+q081,in_catalogue,Handbags,Black,test,openverse,worn; face cropped out
+q082,in_catalogue,Handbags,Off White,test,openverse,worn; seen from behind
+q083,in_catalogue,Handbags,Grey,dev,openverse,display; hanging on a door
+q084,in_catalogue,Handbags,Brown,test,openverse,display; on grass

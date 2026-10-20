@@ -6,7 +6,7 @@ One row per feature, in build order. The user is the screenshot shopper from PRD
 | --- | --- | --- | --- | --- | --- | --- |
 | US-01 | Build the catalogue | Product owner: rebuild exactly what was evaluated | One command; 10 types, ≤ 500 each; same seed gives the same IDs, checked against the committed manifest; bad rows dropped and counted; reserved types only in the holdout | Must | M1 | done |
 | US-02 | One index per model | Product owner: compare models on the same products | Both indexes with aligned IDs; vectors of length 1; ≥ 198 of 200 catalogue images find themselves at rank 1; stale index refused | Must | M1 | done |
-| US-03 | Labelled phone photos | Product owner: score on the photos shoppers really take | Every photo labelled from the catalogue vocabulary; no EXIF; split assigned once and never changed | Must | M2 | not started |
+| US-03 | Labelled query photos | Product owner: score on photos taken outside a studio | Every photo labelled from the catalogue vocabulary; no EXIF; split assigned once and never changed; every web photo credited under an allowed licence (D-26) | Must | M2 | done |
 | US-04 | Eval harness | Product owner: choose a model on reproducible numbers | Results file with random, OpenCLIP, FashionCLIP × dev, test × two rules; hand-worked metric tests; bootstrap intervals; test reads logged | Must | M2 | not started |
 | US-07 | Search API | Find the closest products to a photo | Ten results sorted by score with every field; a catalogue image finds itself; stage timings | Must | M3 | not started |
 | US-08 | No close match | Not waste time on junk | Mug and saree get the no-match panel; "Show closest anyway"; floor from dev | Must | M3 | not started |
