@@ -1,0 +1,43 @@
+[project]
+name = "vsearch"
+version = "0.1.0"
+description = "Visual search for fashion: photo in, ten similar products out, with the eval to prove it"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "torch>=2.4",
+    "torchvision>=0.19",
+    "open_clip_torch>=2.26",
+    "faiss-cpu>=1.8",
+    "huggingface_hub>=0.25",
+    "pyarrow>=17",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "pillow>=10.4",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.3"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["vsearch"]
+
+# CPU-only torch (D-17): latency is measured on CPU, and the CUDA wheels add about 2 GB.
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "data: needs the real downloaded catalogue and indexes (make catalogue, make index); skipped otherwise",
+]
+addopts = "-q"

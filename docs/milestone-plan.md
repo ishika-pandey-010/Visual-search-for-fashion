@@ -39,7 +39,16 @@ M3 is the heaviest. If it runs over, US-09 (Should) moves to M4 first.
 | Story | Points | Notes |
 | --- | --- | --- |
 | US-01 Build the catalogue | 3 | Join on id; seeded sample; drop and count bad rows |
-| US-02 Build one index per model | 3 | GPU allowed for the offline build (R-16); self-retrieval check |
+| US-02 Build one index per model | 3 | CPU build (D-17); self-retrieval check |
+
+### M1 build plan (approved by the owner 2026-10-20)
+
+1. Scaffold on `chore/m1-scaffold`: `uv` project on Python 3.12, CPU-only torch, open_clip, faiss-cpu, huggingface_hub, pyarrow, pandas, Pillow, pytest; Makefile targets; CI job for the unit tests; this plan, the feature map and the open-questions log.
+2. US-01 on `feature/US-01-catalogue`: tests for TC-CAT-01 – 04 on a generated fixture first, confirmed failing; then `vsearch/catalogue.py` and `make catalogue` against the pinned datasets (D-19); then the same checks on the real build.
+3. US-02 on `feature/US-02-index`: tests for TC-CAT-05 – 08 with a fake embedder first, confirmed failing; then `vsearch/embed.py`, `vsearch/index.py` and `make index` for both models; then the self-retrieval check on the real indexes.
+4. Each feature gets a session log; M1 review notes; tag `m1`.
+
+Downloads: about 0.9 GB of parquet and 1.2 GB of model weights, into `data/` and the Hugging Face cache.
 
 ## M2 — Eval harness
 
