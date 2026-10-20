@@ -121,4 +121,4 @@ The schemas live in `docs/data-contracts.md` and are the source of truth. The on
 
 ## Current status
 
-M1 done on `dev`, tagged `m1` (2026-10-20): US-01 catalogue (4,905 products) and US-02 indexes for both models, with session logs. Discovery, query photos, usability and the experiment haven't happened (OQ-01). M2 starts with a plan for approval; US-03 needs the owner's labelled photos.
+M2 done on `dev`, tagged `m2` (2026-10-21): US-03 84 credited Openverse query photos (D-26, labels by Claude Code, D-28) and US-04 the eval harness; dev results only. **Do not run `make eval-test`** until the owner approves the PRD Q3 target and spot-checks labels (OQ-05). Discovery, usability and the experiment haven't happened (OQ-01). M3 starts with a plan for approval.
