@@ -218,3 +218,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- project ---
+# local planning notes (not part of the repo)
+/.temp/
+# downloaded datasets, images, built catalogue and indexes
+/data/
+# local env files
+.env*.local
+# node / vite
+node_modules/
+/web/dist/
+# playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/

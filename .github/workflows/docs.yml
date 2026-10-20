@@ -1,0 +1,20 @@
+name: docs
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+
+jobs:
+  traceability:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check every ID links up
+        run: python3 scripts/docs_check.py --check
+      - name: Traceability matrix is up to date
+        run: |
+          python3 scripts/docs_check.py
+          git diff --exit-code docs/traceability.md || (echo "Run 'make docs' and commit docs/traceability.md" && exit 1)
+      - name: README Results are generated, not typed
+        run: python3 scripts/results.py --check
