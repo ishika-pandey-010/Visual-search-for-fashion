@@ -54,7 +54,7 @@ def eval_rows():
         return [
             catalogue_row(),
             ("Top-10 match rate (Recall@10), test photos",
-             "Not run yet: no `eval/results/<date>.json` (needs labelled phone photos, M2)", "`eval/results/`"),
+             "Not run yet: no `eval/results/<date>.json` (M2)", "`eval/results/`"),
             ("Precision@10 and MRR, test photos", "Not run yet (M2)", "`eval/results/`"),
             ("No close match (similarity floor)", "Not run yet (M2–M3)", "`eval/results/`"),
             ("Model chosen by the D-08 rule", "Not chosen yet (M3)", "`eval/results/`"),
@@ -63,7 +63,8 @@ def eval_rows():
     cat, q = data["catalogue"], data["queries"]
     rows = [
         ("Catalogue searched", f"{cat['products']:,} products across {cat['article_types']} article types", src_md),
-        ("Labelled phone photos", f"{q['dev']} dev, {q['test']} test", src_md),
+        ("Labelled query photos (openly licensed web photos, D-26)",
+         f"{q.get('dev', 0)} dev" + (f", {q['test']} test" if "test" in q else ", test not read yet"), src_md),
     ]
     by_key = {(r["system"], r["split"], r["rule"]): r for r in data["rows"]}
 
@@ -78,9 +79,17 @@ def eval_rows():
             if ci:
                 value += f" ({ci[0]:.2f}–{ci[1]:.2f})"
             parts.append(value)
-        return " · ".join(parts) or "No test-split rows in the file"
+        return " · ".join(parts) or "Test split not read yet (dev-only run; target set first, PRD Q3)"
 
     rows.append(("Top-10 match rate (Recall@10), test photos, same type and colour", cell("recall_at_10"), src_md))
+    dev = []
+    for key, label in SYSTEMS:
+        r = by_key.get((key, "dev", "strict"))
+        if r:
+            dev.append(f"{label} {r['recall_at_10']:.2f} ({r['recall_at_10_ci'][0]:.2f}–{r['recall_at_10_ci'][1]:.2f})")
+    if dev:
+        rows.append((f"Top-10 match rate on the {q.get('dev', 0)} dev photos (the tuning split, not the result)",
+                     " · ".join(dev), src_md))
     rows.append(("Top-10 match rate, same type only", cell("recall_at_10", "type_only"), src_md))
     rows.append(("Precision@10, test photos", cell("precision_at_10"), src_md))
     rows.append(("MRR, test photos", cell("mrr"), src_md))

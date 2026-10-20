@@ -42,15 +42,16 @@ As the product owner, I want one search index per model, so that both models are
 
 ## Epic E2 — Evaluation and the ship decision
 
-### US-03 Labelled phone photos
-FR-12, NFR-07 · Must · M2 · 2
+### US-03 Labelled query photos
+FR-12, NFR-07 · Must · M2 · 3
 
-As the product owner, I want a checked set of real phone photos with labels, so that the metrics describe the photos shoppers will actually take.
+As the product owner, I want a checked set of real photographs with labels, so that the metrics describe photos taken outside a studio, not the catalogue's own shots. (Openly licensed web photos since D-26; the owner's phone photos can be added as a second source.)
 
 - **AC1** Given photos in `eval/queries/` and `labels.csv`, when I run `make eval-check`, then every photo has exactly one label row, every row has a photo, and every `article_type` and `base_colour` is in the catalogue vocabulary.
 - **AC2** Given any photo in `eval/queries/`, when its metadata is read, then it has no EXIF block.
 - **AC3** Given labels without a split, when the split is assigned, then each photo gets `dev` or `test` by seed, the split is written to `labels.csv`, and a later run never changes an existing assignment.
 - **AC4** Given the labelled set, when `make eval-check` runs, then it prints counts by `kind` and by type, and warns if any catalogue type has fewer than 4 test photos.
+- **AC5** Given a photo from the web, when `make eval-check` runs, then it has a row in `sources.csv` with creator, source link and a licence of CC0, public-domain mark, CC BY or CC BY-SA, and `ATTRIBUTION.md` credits it; a photo with any other licence fails the check.
 
 ### US-04 Retrieval eval harness
 FR-12, NFR-02, NFR-03 · Must · M2 · 5

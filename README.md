@@ -2,7 +2,7 @@
 
 Take a photo of a piece of clothing and get the ten most similar products from a catalogue of about 5,000, or a plain "no close match" when nothing is close. Built with OpenCLIP and Marqo-FashionCLIP embeddings, a FAISS index, a FastAPI service and a React front end, over products from the open Fashion Product Images dataset.
 
-> **Status: M1 done (tag `m1`).** The catalogue and one search index per model are built and tested ([catalogue log](docs/session-logs/2026-10-20-catalogue.md), [index log](docs/session-logs/2026-10-20-index.md)). There is no eval, API or app yet; no photos are labelled and no shoppers interviewed. The Results table below says so because it's generated from the files that will hold the numbers.
+> **Status: M2 done (tag `m2`).** Catalogue, both indexes, 84 openly licensed query photos and the eval harness are built and tested. Only the dev split has been scored; the test split stays unread until the test target is approved (PRD Q3). There is no API or app yet, and no shoppers have been interviewed. The Results table below is generated from the files that hold the numbers, so it says exactly that.
 
 ## For reviewers: where the proof is
 
@@ -44,7 +44,7 @@ Shoppers often know what they want only by sight, and a text box makes them put 
 
 | Question | Measure |
 | --- | --- |
-| Are the results relevant? | Top-10 match rate (Recall@10), Precision@10 and MRR on real phone photos, scored as same type and same colour. Random baseline, generic OpenCLIP and Marqo-FashionCLIP side by side, with 95% intervals |
+| Are the results relevant? | Top-10 match rate (Recall@10), Precision@10 and MRR on 84 openly licensed real-world photos (Openverse, D-26; not shoppers' phone photos), scored as same type and same colour. Random baseline, generic OpenCLIP and Marqo-FashionCLIP side by side, with 95% intervals |
 | Is a fashion model worth its cost? | A rule written before any run: ship it only if it's ≥ 5 points better on dev **and** p95 stays within 500 ms (D-08) |
 | Is it fast? | p50 and p95 per stage and end to end, 200 requests, on an Intel i7-10750H with no GPU |
 | Does "no close match" work? | Share of off-catalogue photos turned away, and of catalogue photos still answered |
@@ -67,15 +67,17 @@ Thresholds and the model choice are tuned on dev photos only; the test split is 
 
 | Metric | Value | Produced by |
 | --- | --- | --- |
-| Catalogue searched | 4,905 products across 10 article types | `eval/catalogue-manifest.csv` |
-| Top-10 match rate (Recall@10), test photos | Not run yet: no `eval/results/<date>.json` (needs labelled phone photos, M2) | `eval/results/` |
-| Precision@10 and MRR, test photos | Not run yet (M2) | `eval/results/` |
-| No close match (similarity floor) | Not run yet (M2–M3) | `eval/results/` |
-| Model chosen by the D-08 rule | Not chosen yet (M3) | `eval/results/` |
+| Catalogue searched | 4,905 products across 10 article types | `eval/results/2026-10-21.json` |
+| Labelled query photos (openly licensed web photos, D-26) | 18 dev, test not read yet | `eval/results/2026-10-21.json` |
+| Top-10 match rate (Recall@10), test photos, same type and colour | Test split not read yet (dev-only run; target set first, PRD Q3) | `eval/results/2026-10-21.json` |
+| Top-10 match rate on the 18 dev photos (the tuning split, not the result) | Random 0.06 (0.00–0.17) · OpenCLIP ViT-B-32 0.56 (0.33–0.78) · Marqo-FashionCLIP 0.67 (0.44–0.89) | `eval/results/2026-10-21.json` |
+| Top-10 match rate, same type only | Test split not read yet (dev-only run; target set first, PRD Q3) | `eval/results/2026-10-21.json` |
+| Precision@10, test photos | Test split not read yet (dev-only run; target set first, PRD Q3) | `eval/results/2026-10-21.json` |
+| MRR, test photos | Test split not read yet (dev-only run; target set first, PRD Q3) | `eval/results/2026-10-21.json` |
 | Latency p50 / p95 | Not run yet: no `eval/results/bench-<date>.json` (M3) | `eval/results/` |
 | Usability test | Not run yet: no sessions in `docs/usability.md` (M5) | `docs/usability.md` |
 | Layout experiment click-through (A vs B) | Not run yet (M5). Needs 388 searches with results per layout to detect a 10-point change in click-through | `docs/ab-test.md` |
-| UAT cases executed / passed | Not run yet: 0 of 70 executed | `docs/uat/test-cases.csv` |
+| UAT cases executed / passed | Not run yet: 0 of 71 executed | `docs/uat/test-cases.csv` |
 <!-- results:end -->
 
 ## Stack
@@ -92,6 +94,8 @@ Needs [uv](https://docs.astral.sh/uv/) and about 3 GB free (datasets, model weig
 make setup       # Python 3.12 and CPU-only dependencies
 make catalogue   # downloads the pinned datasets; ~3 min first time; says whether it matches eval/catalogue-manifest.csv
 make index       # embeds the catalogue with both models; ~46 min on an i7-10750H, under 2 s when nothing changed
+make eval-check  # checks the 84 query photos: labels, metadata, licences, credits, split
+make eval        # scores random, OpenCLIP and FashionCLIP on the dev photos (~15 s)
 make test        # unit tests on a generated fixture (what CI runs)
 make test-data   # the same checks on the real catalogue and indexes
 make docs        # rebuild docs/traceability.md and the Results table above

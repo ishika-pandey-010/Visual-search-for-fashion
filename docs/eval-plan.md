@@ -17,9 +17,13 @@ How the search is scored, written before any model has been run (M0). If this pa
 | `out_of_catalogue` | 10–15 | A real garment of another type (saree, watch, sunglasses, scarf) |
 | `not_fashion` | 10 | Anything else: a mug, a plant, a laptop |
 
-Photos come from my own wardrobe and from friends who agree to it (NFR-07). Each is labelled with `article_type` and `base_colour` from the catalogue vocabulary, by looking at the garment, not at search results. Labelling before any search is run keeps the labels from bending toward what the model returns.
+**Where the photos come from (changed 2026-10-21, D-26).** The plan was my own wardrobe and friends' photos. The owner asked for the build to go ahead with web images instead. Freepik and Pexels both forbid this use in their terms, so the photos come from Openverse: CC0, public-domain, CC BY and CC BY-SA photographs, mostly from Flickr and Wikimedia, each credited in `eval/queries/ATTRIBUTION.md`. Owner phone photos can be added later with `source: owner:<code>`, and results can then be split by source.
 
-Real photos only. Catalogue images with added blur or noise make tidy test data, but they say nothing about how shoppers take photos. The only synthetic use is the blur and darkness tuning in §6.
+**Choosing photos.** Prefer photos where one garment is clearly the subject in a real setting (worn, on a hanger, on a bed or shop rail) over clean studio product shots, which look too much like the catalogue. Skip AI-generated images, collages, illustrations, and any photo where a face can't be cropped out. Each photo's setting is recorded in `notes`.
+
+**Labelling (D-28).** Claude Code labels each photo with `article_type` and `base_colour` from `eval/vocabulary.csv` by looking at the garment, before any search is run. Labelling before searching keeps the labels from bending toward what the model returns. The owner spot-checks a sample (OQ-05).
+
+Real photographs only. Catalogue images with added blur or noise make tidy test data, but they say nothing about photos taken outside a studio. The only synthetic use is the blur and darkness tuning in §6.
 
 **Split.** Each photo is assigned to dev (about 30%) or test (about 70%) once, by seed, stratified by `kind` (D-07). Dev is for tuning. Test is read once per milestone, after choices are frozen, and every read is logged (US-04 AC5).
 
@@ -28,6 +32,8 @@ Real photos only. Catalogue images with added blur or noise make tidy test data,
 A result is **relevant** to a query when its `article_type` and `base_colour` both equal the query's label (D-06). This is the rule behind "top-10 match rate".
 
 A second rule, **type-only**, counts a result as relevant when only `article_type` matches. It's always reported beside the strict rule, never in place of it. The gap between the two shows how much of the error is colour.
+
+Some photos show a type and colour the catalogue doesn't stock (one of 62: a lavender shirt). They stay in the metrics as misses, because shoppers photograph what they see, and the results file counts them so the ceiling is visible (D-30).
 
 Known harshness: the source uses 46 colour names, and some are near-identical (`Navy Blue` and `Blue`, `Off White` and `White`). The strict rule counts those as misses. That makes the headline number conservative, which is the right direction to be wrong in (PRD Q5).
 
@@ -73,8 +79,8 @@ Only in-catalogue photos are scored for these three metrics. Out-of-catalogue an
 
 ## 8. Limits to state wherever the numbers appear
 
-- Fewer than 100 photos, taken by a handful of people in a few homes, from a few wardrobes.
-- Labels made by one person.
+- Fewer than 100 photos, from the open web rather than shoppers' phones: often better framed and lit than a quick snap, so results may be better than a shopper would see (R-17).
+- Labels made by one labeller (Claude Code, D-28), spot-checked by the owner.
 - Relevance by type and colour only; pattern and style aren't scored.
 - The catalogue is one retailer's studio product shots on plain backgrounds, 10 types.
 - Latency on one laptop over loopback; a hosted demo will differ, and if it's measured it's reported separately.

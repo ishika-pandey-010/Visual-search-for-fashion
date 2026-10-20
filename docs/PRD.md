@@ -111,7 +111,7 @@ Priority uses MoSCoW. **Must** = v1 cannot ship without it.
 | NFR-04 | The search flow works with a keyboard only; result images have the product name as alt text; text and controls meet WCAG 2.2 AA contrast. | Should |
 | NFR-05 | Works at phone widths from 360 px, with camera capture in current Chrome on Android and Safari on iOS, and on desktop Chrome, Firefox and Safari. | Should |
 | NFR-06 | Runs on free tools only: open models and data, CPU inference, PostHog free plan. No paid API is needed to build, evaluate or demo it. | Must |
-| NFR-07 | Eval query photos have EXIF stripped, show no faces, and are taken with the owner's consent; contributors are recorded by code only. | Must |
+| NFR-07 | Eval query photos have EXIF stripped and show no faces. Web photos carry a licence that allows this use and are credited (D-26); the owner's own photos are taken with consent and recorded by code only. | Must |
 
 ## 7. Key flows
 
@@ -140,7 +140,7 @@ Priority uses MoSCoW. **Must** = v1 cannot ship without it.
 | Hugging Face datasets (`ashraq/…`, `ceyda/…`) | Catalogue labels and images | R-08, R-14 |
 | open_clip and the two model weights | Embeddings | — |
 | PostHog free plan | Events, feature flag, experiment | R-11 |
-| 60–100 labelled phone photos | Eval | R-02, R-10 |
+| 60–100 labelled photos (Openverse since D-26) | Eval | R-02, R-10, R-17 |
 | Five shoppers | Discovery and usability | R-10 |
 | A hosted demo (for example a free Hugging Face Space) | The experiment needs outside visitors | R-09, R-08 |
 
@@ -159,7 +159,7 @@ Priority uses MoSCoW. **Must** = v1 cannot ship without it.
 | --- | --- | --- | --- | --- |
 | Q1 | Can the Myntra-sourced product images be shown on a public hosted demo? Neither Hugging Face card states a licence. | PM | Before M5 | [TBD] (R-08) |
 | Q2 | Is "same type and same colour" the right relevance rule, or do shoppers weigh pattern more? | PM | End of M0 | [TBD] from discovery (A1) |
-| Q3 | What Recall@10 target on test counts as good enough? | PM | End of M2 | [TBD]: set from dev numbers before test is read |
+| Q3 | What Recall@10 target on test counts as good enough? | PM | End of M2 | **Proposed 2026-10-21, awaiting owner approval:** the shipped model's strict Recall@10 on the 44 test photos is at least 0.50, and its 95% interval sits wholly above random's. Reasoning: on 18 dev photos the two models scored 0.56 and 0.67 with lower bounds of 0.33 and 0.44, so 0.50 is reachable but not given; and "above random" is the minimum for the number to mean anything. The test split stays unread until this is approved (OQ-05 too). |
 | Q4 | Where will the experiment's visitors come from, and how many are realistic in two weeks? | PM | Before M5 | [TBD] (R-09) |
 | Q5 | Should the colour rule merge near-identical source colours (`Navy Blue` and `Blue`, `Off White` and `White`)? | PM | M2 | Not in v1: the strict rule stands, type-only is reported beside it (D-06) |
 
@@ -168,3 +168,5 @@ Priority uses MoSCoW. **Must** = v1 cannot ship without it.
 | Version | Date | Change |
 | --- | --- | --- |
 | 0.1 | 2026-10-20 | First draft from the build plan, the resume bullet and dataset checks |
+| 0.2 | 2026-10-21 | Query photos from Openverse instead of the owner's phone (D-26); NFR-07 reworded to cover licences |
+| 0.3 | 2026-10-21 | Q3 test target proposed from the dev run |

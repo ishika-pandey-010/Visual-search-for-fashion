@@ -86,10 +86,15 @@ It never writes the uploaded image to disk, never logs image bytes or file names
 
 | File | Content |
 | --- | --- |
-| `<query_id>.jpg` | A phone photo, EXIF stripped, no face visible (NFR-07) |
-| `labels.csv` | `query_id, kind, article_type, base_colour, split, taken_by, notes` |
+| `<query_id>.jpg` | The photo as `/search` would receive it: cropped if needed, 640 px on the long side, re-encoded JPEG with no EXIF (D-27), no face visible (NFR-07) |
+| `labels.csv` | `query_id, kind, article_type, base_colour, split, source, notes` |
+| `sources.csv` | `query_id, source, source_id, title, creator, creator_url, landing_url, license, license_version, license_url, changes` |
+| `ATTRIBUTION.md` | One credit line per photo, generated from `sources.csv` |
+| `selections.csv` | The labelling record: which Openverse candidate became which query, its labels, crop box and notes. `make eval-queries` rebuilds the photos from it |
 
-`kind` is `in_catalogue` (a garment of one of the 10 types), `out_of_catalogue` (a garment of another type) or `not_fashion` (a mug, a plant). `article_type` and `base_colour` must come from the catalogue vocabulary and are blank for `not_fashion`. `split` is `dev` or `test`, assigned once by seed and never changed (D-07). `taken_by` is a code (Q1, Q2…), never a name.
+`kind` is `in_catalogue` (a garment of one of the 10 types), `out_of_catalogue` (a garment of a reserved type: Sarees, Watches, Sunglasses) or `not_fashion` (a mug, a plant). `article_type` and `base_colour` must come from the vocabulary in `eval/vocabulary.csv` (the catalogue's own words, plus the reserved types) and are blank for `not_fashion`. `split` is `dev` or `test`, assigned once by seed and never changed (D-07). `source` is `openverse` for web photos (D-26) or `owner:<code>` for the owner's own photos; never a person's name. Allowed licences for web photos: `cc0`, `pdm`, `by`, `by-sa` (D-26). `creator` is required for `by` and `by-sa`, which require credit; CC0 and public-domain photos may have none, and the credit line then says "creator not named". Splits are stratified by kind, and by type within in-catalogue photos, keeping at least 4 test photos per type (D-29).
+
+`notes` records the setting in one word first (`worn`, `flat`, `hanger`, `display`, `studio`), so results can be split by how the photo was taken.
 
 ## 6. Eval results (`eval/results/<YYYY-MM-DD>.json`, written by `make eval`)
 
@@ -103,11 +108,17 @@ It never writes the uploaded image to disk, never logs image bytes or file names
     {"system": "random | openclip | fashionclip", "split": "dev | test", "rule": "strict | type_only",
      "n": 0, "recall_at_10": 0.0, "recall_at_10_ci": [0.0, 0.0], "precision_at_10": 0.0, "mrr": 0.0}
   ],
+  "rule": "strict = same articleType and baseColour; type_only = same articleType (D-06)",
+  "unanswerable_strict": {"dev": 0, "test": 0},
   "no_match": {"system": "fashionclip", "split": "test", "floor": 0.0,
                "in_catalogue_answered": 0.0, "n_in": 0, "out_of_catalogue_rejected": 0.0, "n_out": 0},
   "model_choice": {"chosen": "openclip | fashionclip", "rule": "D-08", "reason": "plain sentence with the numbers"}
 }
 ```
+
+`no_match` (US-08) and `model_choice` (US-06) are added in M3; until then they're absent. A dev-only run (`make eval`) has only dev rows and no `test` key in `queries`. `unanswerable_strict` counts in-catalogue queries whose type and colour the catalogue doesn't stock at all (D-30).
+
+`eval/results/<YYYY-MM-DD>-queries.csv` has one row per in-catalogue query and system: `query_id, system, split, article_type, base_colour, strict_matches_in_catalogue, setting, first_relevant_rank_strict, first_relevant_rank_type_only, top_score, top_10` (space-separated product IDs). `eval/results/test-reads.log` gets one dated line for every run that reads the test split.
 
 ### Latency (`eval/results/bench-<YYYY-MM-DD>.json`, written by `make bench`)
 

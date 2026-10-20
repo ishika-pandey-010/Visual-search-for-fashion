@@ -1,0 +1,85 @@
+query_id,candidate_id,kind,article_type,base_colour,crop,notes
+q001,d7a3446e-7a89-4303-85ec-935cf4aa0011,in_catalogue,Tshirts,Grey,,hanger
+q002,9e155a42-814d-4229-9876-f2ca42253a98,in_catalogue,Tshirts,Blue,,flat
+q003,01d9bbd0-4911-4a15-8d53-8055e6d7092c,in_catalogue,Tshirts,Navy Blue,,flat
+q004,4cab301d-36a6-4a2d-81ab-f000cf85890b,in_catalogue,Tshirts,Grey,,flat
+q005,3c39ba28-4003-4d84-b769-b48a5a29fa9a,in_catalogue,Tshirts,Navy Blue,0.3 0.3 1 1,worn; held up; face cropped out
+q006,2326b063-d9f9-40b6-9070-14b2b90c509e,in_catalogue,Tshirts,Blue,0.02 0.33 0.45 0.8,worn; face cropped out
+q007,2f41d885-34c0-4f2e-b62a-5e7e9affdf7c,in_catalogue,Tshirts,Black,0 0.55 0.55 1,worn; face cropped out
+q008,82c05300-2493-425f-a31f-f771fe782e30,in_catalogue,Tshirts,White,0.05 0.45 0.6 1,studio; face cropped out
+q009,f3b5114b-0b1c-4d7d-955f-b2c223de2961,in_catalogue,Shirts,Blue,,flat
+q010,baca93d7-a9e4-42ef-9f5a-5f03f521debe,in_catalogue,Shirts,Blue,0 0.3 0.7 0.78,worn; face cropped out
+q011,ff8bc998-3be3-46e5-8ecc-036b7ebd1352,in_catalogue,Shirts,Blue,,worn; no face in frame
+q012,8f0663b1-8e9b-4fc9-9e26-a39cb1b5110b,in_catalogue,Shirts,Navy Blue,0 0.33 0.8 0.85,worn; face cropped out
+q013,b271294e-1d40-4177-8e48-a6ae841a1cf1,in_catalogue,Shirts,Pink,0.55 0.42 1 0.85,worn; face cropped out
+q014,7785a62e-5a7b-4165-9755-7e091f7e296b,in_catalogue,Shirts,White,0.25 0.35 0.8 1,worn; face cropped out
+q015,86db1e62-eeba-4ec3-be90-d3a97273bba4,in_catalogue,Shirts,Lavender,0.15 0.25 0.9 0.8,worn; face cropped out
+q016,3f9ff55d-4976-4a86-aa65-5af1ce4c1123,in_catalogue,Tops,White,0.25 0.3 0.85 0.7,worn; face cropped out
+q017,54318121-6bb2-420f-a60c-5b0cb7ad8731,in_catalogue,Tops,White,,flat
+q018,deef9552-3af7-4a12-a146-23e133c4256c,in_catalogue,Tops,Black,0.1 0.33 1 0.72,worn; face cropped out
+q019,a57c4223-d9d5-4599-9b92-83c61477da32,in_catalogue,Tops,Black,0.2 0.28 0.75 0.5,worn; mirror photo; face cropped out
+q020,3ab521c1-b6a2-49fe-a3d1-a269a6936ce7,in_catalogue,Tops,Multi,0.15 0.27 0.85 0.5,worn; face cropped out
+q021,65385c6f-35c1-4b91-b6d8-56bb81053a10,in_catalogue,Tops,White,,studio; museum piece
+q022,584cbf3f-0e7a-480b-89c7-cb5da2439ca4,in_catalogue,Kurtas,Grey,0.36 0.3 0.63 0.78,studio; advert; face cropped out
+q023,4952c310-702e-4aa4-8feb-936f2799ec19,in_catalogue,Kurtas,Brown,,display; dress form
+q024,26e74972-2cd3-44e0-8ac3-86be66ef1652,in_catalogue,Kurtas,White,,studio; museum piece
+q025,a54fe235-4ec3-4090-8b06-8208d9ec91de,in_catalogue,Kurtas,Mustard,,display; dress form
+q026,9829e7cf-c461-4786-88e6-f3d0d32e5b4a,in_catalogue,Dresses,Navy Blue,0 0.33 1 1,worn; face cropped out
+q027,a88ad3e0-225d-4359-bbb8-422a36ba7eff,in_catalogue,Dresses,Beige,0.15 0.3 0.85 0.88,worn; face cropped out
+q028,5c45bb32-8cf1-47a8-9eac-cd2b2a9a68dd,in_catalogue,Dresses,Pink,,worn; no face in frame
+q029,6933aeef-042c-456e-9e76-b7046f455a1e,in_catalogue,Dresses,Yellow,0.15 0.45 0.9 1,worn; face cropped out
+q030,85cef466-d536-42b0-a1eb-7b1a1d982b03,in_catalogue,Dresses,White,0.3 0.45 0.75 1,worn; face cropped out
+q031,c13f0e7a-aef5-42c0-8e6e-8cf3a737a2e8,in_catalogue,Dresses,Orange,0.15 0.3 0.45 0.85,worn; seen from behind
+q032,09fd3a66-514f-4627-be8d-ef3142dd4b6d,in_catalogue,Jeans,Navy Blue,,worn; legs only
+q033,c765c058-25da-4769-a575-8093e4ff4ae2,in_catalogue,Trousers,Black,0.15 0.5 0.85 1,worn; face cropped out
+q034,150ca7b1-6717-4b65-bc13-8586a5bb7d7c,in_catalogue,Trousers,Khaki,0.2 0.55 0.8 1,worn; face cropped out
+q035,221b4367-b9ed-45ef-a5e0-fac3a66c177b,in_catalogue,Trousers,Olive,0.3 0.5 0.55 1,worn; face cropped out
+q036,6d278245-026c-4fd3-8ff4-e81cbe964b8b,in_catalogue,Shorts,Blue,,worn; no face in frame
+q037,055f4787-3378-4482-82a6-3bfbfc7a7bb2,in_catalogue,Shorts,Blue,,worn; no face in frame
+q038,6c61097c-6562-4c05-83f8-9c77468d9557,in_catalogue,Shorts,Blue,0 0.62 1 1,worn; face cropped out
+q039,bbd62c16-db35-4d8a-9c9f-6b4685293be0,in_catalogue,Shorts,Red,0.3 0.45 0.8 0.85,worn; seen from behind
+q040,1613a9b7-61e3-4c07-87cf-b64f7cbdf2de,in_catalogue,Shorts,Black,0.2 0.5 0.85 0.95,worn; face cropped out
+q041,24aa520c-0f9a-4ec7-b8aa-2f073210c151,in_catalogue,Shorts,Multi,0.3 0.42 0.72 0.62,worn; face cropped out
+q042,8fd31736-e179-4f95-a6cd-77a54dce7e66,in_catalogue,Casual Shoes,Red,,worn
+q043,ed60efac-5cd5-4cab-b717-2a1175dc3af7,in_catalogue,Casual Shoes,Pink,,studio
+q044,bf9ce4ef-8697-429b-b157-cf9559757328,in_catalogue,Casual Shoes,Grey,,worn
+q045,8452bf95-edc9-4d29-8b51-2a8adfe16b14,in_catalogue,Casual Shoes,Navy Blue,,display
+q046,1121be0b-1497-4263-9cfe-116c03a37793,in_catalogue,Casual Shoes,Black,,worn
+q047,c6667ca2-9eea-456d-bcb5-8841fdf71acf,in_catalogue,Casual Shoes,White,,studio; held in a hand
+q048,68e9490b-0850-4070-a992-8d8474f276ee,in_catalogue,Handbags,Beige,0.3 0.4 0.75 0.75,worn; face cropped out
+q049,38c65019-3a0e-4b3d-bd6e-636bd27ace08,out_of_catalogue,Sarees,Black,0.1 0.3 0.9 1,worn; face cropped out
+q050,4967fa14-64ec-42fb-96e8-66f1b3114d2a,out_of_catalogue,Sarees,Green,0 0.3 0.95 1,worn; face cropped out
+q051,188ebd0a-6137-4f5d-8c41-41e9c8e89eb3,out_of_catalogue,Sarees,Red,0.1 0.25 0.9 1,worn; face cropped out
+q052,7e0d00fa-78c0-457b-8638-fe3a91b144f6,out_of_catalogue,Sarees,Black,0.2 0.3 0.8 1,worn; face cropped out
+q053,138947d6-e4e5-4039-9760-572acade14dd,out_of_catalogue,Watches,Gold,,studio
+q054,ba6e536f-5dc7-4891-a98b-95c8f5860717,out_of_catalogue,Watches,Silver,,display
+q055,e4229cb0-2716-4ba9-b046-329a188040b3,out_of_catalogue,Watches,Black,,studio
+q056,4cba409b-7978-442d-87bd-3d9688c39795,out_of_catalogue,Watches,White,,display
+q057,e47717f3-8581-47fb-bdeb-71cd9065b2c6,out_of_catalogue,Sunglasses,,,flat
+q058,f1da9d00-e1bb-4763-94fe-bd09ee768829,out_of_catalogue,Sunglasses,Yellow,,studio
+q059,f8d28e1d-3195-4c47-bacc-02fde1999a02,out_of_catalogue,Sunglasses,Brown,,display
+q060,fbe1dc5e-0f7f-43e7-bb8b-f189d0081c95,out_of_catalogue,Sunglasses,,,display
+q061,48bcf038-4a63-4ef3-8439-2e0decb25043,not_fashion,,,,mug
+q062,ec14e689-3c12-4949-917f-6522d52a07a2,not_fashion,,,,mug
+q063,7c297966-a6ac-490b-a2a9-20834dd1aff9,not_fashion,,,,mug
+q064,edbc60b2-a14c-463b-9c20-3126e200e1ee,not_fashion,,,,laptop
+q065,1fdb9216-5c48-4d54-abf6-041062494a62,not_fashion,,,,laptop
+q066,b9004455-e195-494e-9e41-05e3dc8531d9,not_fashion,,,,laptop
+q067,d6351543-ede5-452b-942b-f16355d58713,not_fashion,,,,fruit bowl
+q068,d6cf7ad1-19ff-4172-bb8d-d35aad7fdebf,not_fashion,,,,fruit bowl
+q069,c19d5039-18e9-4a8d-b9b0-1df98f7e4574,not_fashion,,,,fruit bowl
+q070,63e13df8-2b7b-4238-b295-f88c5c051521,not_fashion,,,,fruit bowl
+q071,b287ad33-7919-45bf-a6c4-e8aa3644f7cb,in_catalogue,Jeans,Blue,0.25 0.4 0.75 0.82,worn; face cropped out
+q072,06b240bb-1a47-4350-81da-a3f7b5a816bc,in_catalogue,Jeans,Navy Blue,,worn; legs only
+q073,49ddbd58-f466-4225-b72d-650f6b38899f,in_catalogue,Jeans,Blue,,display; folded on a bicycle
+q074,9b4d79b9-68f2-45ae-a13f-afdcb4a1beda,in_catalogue,Jeans,Blue,0.3 0.45 0.75 0.9,worn; face cropped out
+q075,ca2f8392-9b27-4643-a1ba-3d277ea5795e,in_catalogue,Jeans,Blue,,worn; legs only
+q076,1c67cc5d-4dc8-4684-84ad-81986987c6a0,in_catalogue,Jeans,Navy Blue,0.62 0.47 0.9 0.85,worn; face cropped out
+q077,08136953-8fee-4ee0-9a60-bb0d1c59e17b,in_catalogue,Kurtas,Green,0.3 0.25 0.8 1,worn; face cropped out
+q078,f6b52500-ee4e-4637-bcb3-8b27276fdd45,in_catalogue,Trousers,Grey,,studio; no face in frame
+q079,0c0c4421-ce43-4459-b253-07484537f0ef,in_catalogue,Trousers,Khaki,,worn; no face in frame
+q080,ae955813-a8aa-44d7-a434-4c0e280428c1,in_catalogue,Handbags,Tan,,display
+q081,3bca1349-4601-449e-9f67-0987a07fa519,in_catalogue,Handbags,Black,0.45 0.45 1 0.88,worn; face cropped out
+q082,b048f578-10c4-450b-b1f4-20baed688040,in_catalogue,Handbags,Off White,,worn; seen from behind
+q083,765da2dd-3489-4c30-b73c-bb260a3e435d,in_catalogue,Handbags,Grey,,display; hanging on a door
+q084,4fcaf504-3eb1-4bb3-acb0-4905f7bd1d53,in_catalogue,Handbags,Brown,,display; on grass
