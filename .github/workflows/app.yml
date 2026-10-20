@@ -1,0 +1,17 @@
+name: app
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install Python 3.12 and dependencies
+        run: uv sync
+      - name: Unit tests on the generated fixture (no downloads, D-20)
+        run: uv run pytest -m "not data"

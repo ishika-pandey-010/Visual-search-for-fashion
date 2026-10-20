@@ -61,9 +61,16 @@ Code folders arrive from M1: `vsearch/` (Python package: catalogue, embedding, i
 ```text
 make docs        rebuild docs/traceability.md and the README Results, check every ID
 make docs-check  check only (CI)
+make setup       uv sync: Python 3.12, CPU-only torch and every dependency
+make catalogue   download the pinned datasets, build data/catalogue.parquet
+make index       embed the catalogue with both models, one FAISS index each
+make test        unit tests on the generated fixture (CI; no downloads)
+make test-data   checks on the real catalogue and indexes
 ```
 
-From M1 (planned, not yet built): `make setup`, `make catalogue`, `make index`, `make eval`, `make bench`, `make api`, `make web`, `make test`, `make e2e`.
+Planned for M2–M4: `make eval`, `make eval-check`, `make bench`, `make api`, `make web`, `make e2e`.
+
+Run Python through `uv run`. Unit tests never download anything (D-20); a test that needs the real build is marked `@pytest.mark.data`.
 
 ## Data contracts
 
