@@ -39,7 +39,16 @@ M3 is the heaviest. If it runs over, US-09 (Should) moves to M4 first.
 | Story | Points | Notes |
 | --- | --- | --- |
 | US-01 Build the catalogue | 3 | Join on id; seeded sample; drop and count bad rows |
-| US-02 Build one index per model | 3 | GPU allowed for the offline build (R-16); self-retrieval check |
+| US-02 Build one index per model | 3 | CPU build (D-17); self-retrieval check |
+
+### M1 build plan (approved by the owner 2026-10-20)
+
+1. Scaffold on `chore/m1-scaffold`: `uv` project on Python 3.12, CPU-only torch, open_clip, faiss-cpu, huggingface_hub, pyarrow, pandas, Pillow, pytest; Makefile targets; CI job for the unit tests; this plan, the feature map and the open-questions log.
+2. US-01 on `feature/US-01-catalogue`: tests for TC-CAT-01 – 04 on a generated fixture first, confirmed failing; then `vsearch/catalogue.py` and `make catalogue` against the pinned datasets (D-19); then the same checks on the real build.
+3. US-02 on `feature/US-02-index`: tests for TC-CAT-05 – 08 with a fake embedder first, confirmed failing; then `vsearch/embed.py`, `vsearch/index.py` and `make index` for both models; then the self-retrieval check on the real indexes.
+4. Each feature gets a session log; M1 review notes; tag `m1`.
+
+Downloads: about 0.9 GB of parquet and 1.2 GB of model weights, into `data/` and the Hugging Face cache.
 
 ## M2 — Eval harness
 
@@ -102,8 +111,13 @@ Filled in at the end of each milestone.
 - Shoppers booked: [TBD]
 - Retro — keep: [TBD] · change: [TBD]
 
-### M1 review
-- Planned: 6 pts · Done: [TBD]
+### M1 review (2026-10-20)
+- Planned: 6 pts · Done: 6 pts (US-01, US-02). Both built on 2026-10-20, ahead of the planned 10-24 start.
+- Demo: `make catalogue` → 4,905 products across 10 types, matching the committed manifest; `make index` → one 4,905 × 512 index per model, each finding 200 of 200 catalogue images at rank 1. Unit tests 21 passing; real-data checks 10 passing.
+- Not done: the M0 people tasks. No interviews, photos or bookings yet, so OQ-01 stays open.
+- Risks: R-06 up from 4 to 6 (FashionCLIP embeds at 2.7× OpenCLIP's time per image in batch, see the index session log); R-16 closed.
+- What went wrong: a unit test overwrote the committed manifest once (caught by the rebuild's own check, guarded since); the CPU index build took 46 minutes, not minutes (D-25).
+- Retro — keep: checking the real data before writing a check about it (duplicate images before the self-check). Change: write the "fails first" stub before the test file, so a vacuous assertion shows up as a pass straight away.
 
 ### M2 review
 - Planned: 7 pts · Done: [TBD]

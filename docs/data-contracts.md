@@ -22,19 +22,29 @@ One row per product in the searchable catalogue.
 | `base_colour` | str | Source vocabulary as written (46 values, e.g. `Navy Blue` is not `Blue`) |
 | `gender` | str | `Men`, `Women`, `Unisex`, `Boys`, `Girls` |
 | `name` | str | `productDisplayName` |
-| `image_path` | str | `data/images/<product_id>.jpg`, 384 × 512, from the ceyda copy |
+| `image_path` | str | `images/<product_id>.jpg`, relative to the data directory; the source JPEG bytes from the ceyda copy (D-21), almost all 384 × 512 |
 
-Build rules: at most 500 products per type, sampled with seed 2026; a product with no image, no label or an image under 200 px on its short side is dropped and counted in `data/catalogue-report.json`. Products of the reserved out-of-catalogue types (D-03) go to `data/holdout.parquet` and never into the catalogue.
+Build rules: a product with no colour or name label, no image, an unreadable image or an image under 200 px on its short side is dropped and counted in `data/catalogue-report.json`; then at most 500 per type are sampled with seed 2026 (OQ-04). Products of the reserved out-of-catalogue types (D-03) go to `data/holdout.parquet`, sampled the same way, and never into the catalogue.
+
+`eval/catalogue-manifest.csv` (`product_id, article_type, base_colour`, in catalogue order) is committed. `make catalogue` compares every rebuild with it and says whether it matches, so a changed catalogue can't slip into an eval unnoticed.
 
 ## 3. Index (`data/index/<model>/`, built by `make index`)
 
 | File | Content |
 | --- | --- |
 | `vectors.faiss` | `IndexFlatIP` over L2-normalised image embeddings (D-05) |
-| `ids.npy` | `product_id` per index row, same order |
-| `meta.json` | model name and pretrained tag, embedding dimension, catalogue file hash, build date |
+| `ids.npy` | `product_id` per index row, in catalogue order |
+| `meta.json` | `model`, `label`, `repo`, `revision`, `dim`, `torch_threads`, `count`, `catalogue_hash`, `built`, `embed_seconds` |
+| `self-check.json` | `n`, `rank1`, `misses` from the US-02 AC3 check: 200 catalogue images, embedded afresh, searched against their own index |
 
-Model keys: `openclip` = `ViT-B-32` / `laion2b_s34b_b79k`; `fashionclip` = `hf-hub:Marqo/marqo-fashionCLIP`. An index whose catalogue hash doesn't match the current catalogue is rebuilt, never reused.
+Models, both pinned to a Hugging Face commit (D-19) and loaded through open_clip's `local-dir:` loader from that snapshot (D-23):
+
+| Key | Repo | Revision |
+| --- | --- | --- |
+| `openclip` | `laion/CLIP-ViT-B-32-laion2B-s34B-b79K` (ViT-B-32, `laion2b_s34b_b79k`) | `1a25a446712ba5ee05982a381eed697ef9b435cf` |
+| `fashionclip` | `Marqo/marqo-fashionCLIP` (ViT-B-16 base) | `44f4c655124ed71e90cbf528d82f508d69d8a81b` |
+
+`catalogue_hash` is a SHA-256 over every product's id, type, colour and image-file hash, so it changes when an image changes even if the product list doesn't (D-24). Loading an index whose hash doesn't match the current catalogue fails with "Index is out of date: run make index". `make index` reuses an index that matches and rebuilds one that doesn't; `--force` rebuilds anyway.
 
 ## 4. API
 
